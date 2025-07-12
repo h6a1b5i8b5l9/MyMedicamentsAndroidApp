@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using MyMedicamentsApp.Core.Enums;
 using MyMedicamentsApp.Core.Interfaces;
 using MyMedicamentsApp.Core.Models;
+using Microsoft.Maui.Storage;
 
 namespace MyMedicamentsApp.UI.ViewModels
 {
@@ -36,6 +37,8 @@ namespace MyMedicamentsApp.UI.ViewModels
         {
             _medicamentRepository = medicamentRepository;
             SaveCommand = new AsyncRelayCommand(SaveMedicamentAsync, CanSave);
+            ChoosePhotoCommand = new AsyncRelayCommand(ChoosePhotoAsync);
+            TakePhotoCommand = new AsyncRelayCommand(TakePhotoAsync);
             
             // Update SaveCommand can-execute when properties change
             PropertyChanged += (s, e) =>
@@ -48,6 +51,8 @@ namespace MyMedicamentsApp.UI.ViewModels
         }
         
         public ICommand SaveCommand { get; }
+        public ICommand ChoosePhotoCommand { get; }
+        public ICommand TakePhotoCommand { get; }
         
         // Available categories for binding to picker
         public MedicamentCategory[] AvailableCategories => Enum.GetValues<MedicamentCategory>();
@@ -95,6 +100,71 @@ namespace MyMedicamentsApp.UI.ViewModels
             {
                 IsSaving = false;
             }
+        }
+        
+        private async Task ChoosePhotoAsync()
+        {
+            try
+            {
+                var photo = await MediaPicker.PickPhotoAsync();
+                if (photo != null)
+                {
+                    var localPath = await SavePhotoToLocalAsync(photo);
+                    PhotoPath = localPath;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Error choosing photo: {ex.Message}";
+                System.Diagnostics.Debug.WriteLine($"Error choosing photo: {ex.Message}");
+            }
+        }
+        
+        private async Task TakePhotoAsync()
+        {
+            try
+            {
+                if (MediaPicker.IsCaptureSupported)
+                {
+                    var photo = await MediaPicker.CapturePhotoAsync();
+                    if (photo != null)
+                    {
+                        var localPath = await SavePhotoToLocalAsync(photo);
+                        PhotoPath = localPath;
+                    }
+                }
+                else
+                {
+                    ErrorMessage = "Camera is not supported on this device";
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Error taking photo: {ex.Message}";
+                System.Diagnostics.Debug.WriteLine($"Error taking photo: {ex.Message}");
+            }
+        }
+        
+        private async Task<string> SavePhotoToLocalAsync(IFileResult photo)
+        {
+            var localPath = Path.Combine(FileSystem.AppDataDirectory, "MedicamentPhotos");
+            
+            // Create directory if it doesn't exist
+            if (!Directory.Exists(localPath))
+            {
+                Directory.CreateDirectory(localPath);
+            }
+            
+            // Generate unique filename
+            var fileName = $"medicament_{Guid.NewGuid()}.jpg";
+            var fullPath = Path.Combine(localPath, fileName);
+            
+            // Copy the photo to local storage
+            using var stream = await photo.OpenReadAsync();
+            using var fileStream = File.Create(fullPath);
+            await stream.CopyToAsync(fileStream);
+            
+            return fullPath;
         }
     }
 } 
