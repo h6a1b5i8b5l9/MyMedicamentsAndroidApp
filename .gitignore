@@ -1,0 +1,267 @@
+# .NET MAUI
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vs/
+*.ncrunch*
+*.ncrunchsolution
+*.DotSettings
+*.DotSettings.user
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Rider
+.idea/
+*.sln.iml
+
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+# Android Studio
+.gradle/
+local.properties
+.idea/
+*.iml
+*.hprof
+
+# Xamarin
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono auto generated files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
+.env.production
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# MAUI specific
+Platforms/Android/bin/
+Platforms/Android/obj/
+Platforms/Android/Resources/raw/
+Platforms/Android/Resources/values/
+Platforms/Android/Resources/drawable*/
+Platforms/Android/Resources/mipmap*/
+Platforms/Android/Resources/layout/
+Platforms/Android/Resources/xml/
+Platforms/Android/Resources/anim/
+Platforms/Android/Resources/animator/
+Platforms/Android/Resources/color/
+Platforms/Android/Resources/font/
+Platforms/Android/Resources/menu/
+Platforms/Android/Resources/navigation/
+Platforms/Android/Resources/transition/
+Platforms/Android/Resources/interpolator/
+Platforms/Android/Resources/values-night/
+Platforms/Android/Resources/values-v21/
+Platforms/Android/Resources/values-v23/
+Platforms/Android/Resources/values-v24/
+Platforms/Android/Resources/values-v25/
+Platforms/Android/Resources/values-v26/
+Platforms/Android/Resources/values-v27/
+Platforms/Android/Resources/values-v28/
+Platforms/Android/Resources/values-v29/
+Platforms/Android/Resources/values-v30/
+Platforms/Android/Resources/values-v31/
+Platforms/Android/Resources/values-v32/
+Platforms/Android/Resources/values-v33/
+Platforms/Android/Resources/values-v34/
+
+# Generated files
+*.g.cs
+*.g.i.cs
+*.g.resources
+*.g.resources.cs 
