@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="MyMedicamentsApp.UI.Views.AddMedicamentPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MyMedicamentsApp.UI.ViewModels"
+             Title="Add New Medicament">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AddMedicamentViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            
+            <!-- Header -->
+            <Label Text="Add New Medicament" 
+                   FontSize="24" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <!-- Name Field -->
+            <StackLayout>
+                <Label Text="Name *" 
+                       FontSize="16" 
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+                <Entry Text="{Binding Name}" 
+                       Placeholder="Enter medicament name"
+                       FontSize="16"
+                       ReturnType="Next"/>
+            </StackLayout>
+
+            <!-- Description Field -->
+            <StackLayout>
+                <Label Text="Description" 
+                       FontSize="16" 
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+                <Editor Text="{Binding Description}" 
+                        Placeholder="Enter description (optional)"
+                        FontSize="16"
+                        AutoSize="TextChanges"
+                        MinimumHeightRequest="80"/>
+            </StackLayout>
+
+            <!-- Expiration Date Field -->
+            <StackLayout>
+                <Label Text="Expiration Date *" 
+                       FontSize="16" 
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+                <DatePicker Date="{Binding ExpirationDate}" 
+                           MinimumDate="{Binding Source={x:Static System.DateTime.Today}}"
+                           Format="MMM dd, yyyy"/>
+            </StackLayout>
+
+            <!-- Category Field -->
+            <StackLayout>
+                <Label Text="Category *" 
+                       FontSize="16" 
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+                <Picker Title="Select category"
+                        SelectedItem="{Binding SelectedCategory}"
+                        ItemsSource="{Binding AvailableCategories}">
+                    <Picker.ItemDisplayBinding>
+                        <Binding Path="."/>
+                    </Picker.ItemDisplayBinding>
+                </Picker>
+            </StackLayout>
+
+            <!-- Photo Section -->
+            <StackLayout>
+                <Label Text="Photo (Optional)" 
+                       FontSize="16" 
+                       FontAttributes="Bold"
+                       Margin="0,0,0,8"/>
+                
+                <!-- Photo Display -->
+                <Frame IsVisible="{Binding PhotoPath, Converter={StaticResource StringToBoolConverter}}"
+                       Padding="0"
+                       CornerRadius="8"
+                       HasShadow="True"
+                       Margin="0,0,0,12">
+                    <Image Source="{Binding PhotoPath}" 
+                           Aspect="AspectFill"
+                           HeightRequest="200"/>
+                </Frame>
+
+                <!-- Photo Buttons -->
+                <StackLayout Orientation="Horizontal" Spacing="12">
+                    <Button Text="Choose Photo" 
+                            Command="{Binding ChoosePhotoCommand}"
+                            BackgroundColor="#007AFF"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HorizontalOptions="FillAndExpand"/>
+                    
+                    <Button Text="Take Photo" 
+                            Command="{Binding TakePhotoCommand}"
+                            BackgroundColor="#34C759"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Error Message -->
+            <Label Text="{Binding ErrorMessage}" 
+                   TextColor="Red"
+                   FontSize="14"
+                   IsVisible="{Binding ErrorMessage, Converter={StaticResource StringToBoolConverter}}"
+                   HorizontalOptions="Center"/>
+
+            <!-- Save Button -->
+            <Button Text="Save Medicament" 
+                    Command="{Binding SaveCommand}"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    Margin="0,20,0,0"/>
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator IsRunning="{Binding IsSaving}" 
+                              IsVisible="{Binding IsSaving}"
+                              HorizontalOptions="Center"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage> 
