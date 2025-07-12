@@ -5,9 +5,7 @@
              xmlns:viewmodels="clr-namespace:MyMedicamentsApp.UI.ViewModels"
              Title="Add New Medicament">
 
-    <ContentPage.BindingContext>
-        <viewmodels:AddMedicamentViewModel />
-    </ContentPage.BindingContext>
+
 
     <ScrollView>
         <StackLayout Padding="20" Spacing="20">

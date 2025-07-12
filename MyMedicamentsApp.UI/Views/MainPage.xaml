@@ -5,9 +5,7 @@
              xmlns:viewmodels="clr-namespace:MyMedicamentsApp.UI.ViewModels"
              Title="My Medicaments">
 
-    <ContentPage.BindingContext>
-        <viewmodels:MainViewModel />
-    </ContentPage.BindingContext>
+
 
     <Grid>
         <Grid.RowDefinitions>

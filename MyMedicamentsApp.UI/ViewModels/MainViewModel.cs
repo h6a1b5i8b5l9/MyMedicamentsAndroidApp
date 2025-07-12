@@ -26,10 +26,13 @@ namespace MyMedicamentsApp.UI.ViewModels
             _medicamentRepository = medicamentRepository;
             LoadMedicamentsCommand = new AsyncRelayCommand(LoadMedicamentsAsync);
             RefreshCommand = new AsyncRelayCommand(LoadMedicamentsAsync);
+            AddNewCommand = new AsyncRelayCommand(AddNewAsync);
             
             // Load medicaments when ViewModel is created
             _ = LoadMedicamentsAsync();
         }
+        
+        public ICommand AddNewCommand { get; }
         
         public ICommand LoadMedicamentsCommand { get; }
         public ICommand RefreshCommand { get; }
@@ -83,6 +86,11 @@ namespace MyMedicamentsApp.UI.ViewModels
                 return $"Expires in {days} days";
                 
             return $"Expires in {days} days";
+        }
+        
+        private async Task AddNewAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(AddMedicamentPage));
         }
     }
 } 

@@ -83,7 +83,8 @@ namespace MyMedicamentsApp.UI.ViewModels
                 SelectedCategory = MedicamentCategory.Other;
                 PhotoPath = string.Empty;
                 
-                // TODO: Navigate back or show success message
+                // Navigate back after successful save
+                await Shell.Current.GoToAsync("..");
             }
             catch (Exception ex)
             {
