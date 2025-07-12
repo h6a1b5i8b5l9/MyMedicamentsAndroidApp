@@ -5,8 +5,6 @@
              xmlns:viewmodels="clr-namespace:MyMedicamentsApp.UI.ViewModels"
              Title="My Medicaments">
 
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -49,7 +47,7 @@
                                Padding="16" 
                                CornerRadius="12"
                                HasShadow="True"
-                               BackgroundColor="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=DataContext, Converter={StaticResource ExpirationBackgroundConverter}, ConverterParameter={Binding .}}">
+                               BackgroundColor="White">
                             
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -81,7 +79,7 @@
                                     <Label Text="{Binding Name}" 
                                            FontSize="18" 
                                            FontAttributes="Bold"
-                                           TextColor="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=DataContext, Converter={StaticResource ExpirationTextConverter}, ConverterParameter={Binding .}}"/>
+                                           TextColor="Black"/>
                                     
                                     <Label Text="{Binding Category}" 
                                            FontSize="14" 
@@ -91,10 +89,10 @@
 
                                 <!-- Expiration Status -->
                                 <Label Grid.Row="0" Grid.Column="2" 
-                                       Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=DataContext, Converter={StaticResource ExpirationStatusConverter}, ConverterParameter={Binding .}}"
+                                       Text="{Binding ExpirationDate, StringFormat='Expires: {0:MMM dd, yyyy}'}"
                                        FontSize="12" 
                                        FontAttributes="Bold"
-                                       TextColor="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=DataContext, Converter={StaticResource ExpirationStatusColorConverter}, ConverterParameter={Binding .}}"
+                                       TextColor="Gray"
                                        VerticalOptions="Start"
                                        HorizontalOptions="End"/>
 

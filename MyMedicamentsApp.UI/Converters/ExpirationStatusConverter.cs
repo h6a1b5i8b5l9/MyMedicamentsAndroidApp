@@ -5,7 +5,7 @@ namespace MyMedicamentsApp.UI.Converters
 {
     public class ExpirationStatusConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is Medicament medicament)
             {
@@ -14,7 +14,7 @@ namespace MyMedicamentsApp.UI.Converters
             return string.Empty;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

@@ -25,12 +25,19 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IMedicamentRepository, MedicamentRepository>();
 
 		// Register ViewModels
-		builder.Services.AddTransient<MainViewModel>();
+		builder.Services.AddSingleton<MainViewModel>();
 		builder.Services.AddTransient<AddMedicamentViewModel>();
 
-		// Register Views
-		builder.Services.AddTransient<MainPage>();
+		// Register Views with factory
+		builder.Services.AddTransient<MainPage>(serviceProvider =>
+		{
+			var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
+			return new MainPage(viewModel);
+		});
 		builder.Services.AddTransient<AddMedicamentPage>();
+
+		// Register Shell
+		builder.Services.AddSingleton<AppShell>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

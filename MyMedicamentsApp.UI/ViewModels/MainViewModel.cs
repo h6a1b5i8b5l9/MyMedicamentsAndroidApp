@@ -10,7 +10,7 @@ namespace MyMedicamentsApp.UI.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        private readonly IMedicamentRepository _medicamentRepository;
+        private readonly IMedicamentRepository? _medicamentRepository;
         
         [ObservableProperty]
         private ObservableCollection<Medicament> _medicaments = new();
@@ -21,15 +21,18 @@ namespace MyMedicamentsApp.UI.ViewModels
         [ObservableProperty]
         private string _searchText = string.Empty;
         
-        public MainViewModel(IMedicamentRepository medicamentRepository)
+        public MainViewModel(IMedicamentRepository? medicamentRepository = null)
         {
             _medicamentRepository = medicamentRepository;
             LoadMedicamentsCommand = new AsyncRelayCommand(LoadMedicamentsAsync);
             RefreshCommand = new AsyncRelayCommand(LoadMedicamentsAsync);
             AddNewCommand = new AsyncRelayCommand(AddNewAsync);
             
-            // Load medicaments when ViewModel is created
-            _ = LoadMedicamentsAsync();
+            // Only load medicaments if repository is available
+            if (_medicamentRepository != null)
+            {
+                _ = LoadMedicamentsAsync();
+            }
         }
         
         public ICommand AddNewCommand { get; }
@@ -42,6 +45,13 @@ namespace MyMedicamentsApp.UI.ViewModels
             try
             {
                 IsLoading = true;
+                
+                if (_medicamentRepository == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("Repository is null, skipping medicament load");
+                    return;
+                }
+                
                 var medicaments = await _medicamentRepository.GetAllAsync();
                 
                 Medicaments.Clear();
@@ -90,7 +100,8 @@ namespace MyMedicamentsApp.UI.ViewModels
         
         private async Task AddNewAsync()
         {
-            await Shell.Current.GoToAsync(nameof(AddMedicamentPage));
+            // For now, just show a simple message since we don't have Shell navigation
+            await Application.Current.MainPage.DisplayAlert("Add New", "Add New Medicament functionality will be implemented soon!", "OK");
         }
     }
 } 

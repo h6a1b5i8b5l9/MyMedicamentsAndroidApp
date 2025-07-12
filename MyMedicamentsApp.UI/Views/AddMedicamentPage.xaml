@@ -49,7 +49,7 @@
                        FontAttributes="Bold"
                        Margin="0,0,0,8"/>
                 <DatePicker Date="{Binding ExpirationDate}" 
-                           MinimumDate="{Binding Source={x:Static System.DateTime.Today}}"
+                           MinimumDate="{Binding MinExpirationDate}"
                            Format="MMM dd, yyyy"/>
             </StackLayout>
 

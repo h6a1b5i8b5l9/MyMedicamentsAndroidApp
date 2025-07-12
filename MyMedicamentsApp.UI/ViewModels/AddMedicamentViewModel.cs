@@ -1,10 +1,10 @@
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MyMedicamentsApp.Core.Enums;
 using MyMedicamentsApp.Core.Interfaces;
 using MyMedicamentsApp.Core.Models;
 using Microsoft.Maui.Storage;
+using Microsoft.Maui.Media;
 
 namespace MyMedicamentsApp.UI.ViewModels
 {
@@ -50,12 +50,14 @@ namespace MyMedicamentsApp.UI.ViewModels
             };
         }
         
-        public ICommand SaveCommand { get; }
-        public ICommand ChoosePhotoCommand { get; }
-        public ICommand TakePhotoCommand { get; }
+        public AsyncRelayCommand SaveCommand { get; }
+        public AsyncRelayCommand ChoosePhotoCommand { get; }
+        public AsyncRelayCommand TakePhotoCommand { get; }
         
         // Available categories for binding to picker
         public MedicamentCategory[] AvailableCategories => Enum.GetValues<MedicamentCategory>();
+        
+        public DateTime MinExpirationDate => DateTime.Today;
         
         private bool CanSave()
         {
@@ -145,7 +147,7 @@ namespace MyMedicamentsApp.UI.ViewModels
             }
         }
         
-        private async Task<string> SavePhotoToLocalAsync(IFileResult photo)
+        private async Task<string> SavePhotoToLocalAsync(FileResult photo)
         {
             var localPath = Path.Combine(FileSystem.AppDataDirectory, "MedicamentPhotos");
             
